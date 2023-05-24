@@ -224,7 +224,16 @@ public class GeneticAlgorithm
     }
     public void mutationTrading()
     {
+        foreach (var individual in population)
+        {
 
+            if (Random.Range(0f, 1f) < 0.02f)
+            {
+                float cacheY = individual.degreeY;
+                individual.degreeY = individual.degreeX;
+                individual.degreeX = cacheY;
+            }
+        }
     }
     public void Mutation()
     {

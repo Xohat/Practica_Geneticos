@@ -374,8 +374,8 @@ MonoBehaviour:
     population: []
     CurrentGeneration: 0
     MaxGenerations: 0
-    mutationOperator: 0
-    crossoverOperator: 1
+    mutationOperator: 1
+    crossoverOperator: 0
     Summary: 
   CurrentIndividual:
     degreeX: 0
@@ -665,7 +665,7 @@ Transform:
   m_GameObject: {fileID: 1316358077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 43.192, y: 1, z: 2}
+  m_LocalScale: {x: 43.192, y: 1, z: 5.4082}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -762,7 +762,7 @@ Transform:
   m_GameObject: {fileID: 1503351579}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 10, z: 0}
-  m_LocalScale: {x: 28.058, y: 1, z: 2}
+  m_LocalScale: {x: 28.058, y: 1, z: 7.2848}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2

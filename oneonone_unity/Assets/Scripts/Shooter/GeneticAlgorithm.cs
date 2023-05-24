@@ -73,6 +73,10 @@ public class GeneticAlgorithm
             if (CurrentGeneration >= MaxGenerations)
             {
                 Debug.Log(Summary);
+
+                TIMER.stopTimer("TIMER");
+                Debug.Log(TIMER.getTimer("TIMER") / 1000.0f + " SEGUNDOS");
+                
                 return null;
             }
             StartGeneration();

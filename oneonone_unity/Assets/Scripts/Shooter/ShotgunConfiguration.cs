@@ -21,13 +21,17 @@ public class ShotgunConfiguration : MonoBehaviour
     public MutationOperator mutationOperator;
     public CrossoverOperator crossoverOperator;
 
+    public int poblation = 100;
+
     private bool _ready;
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 50f;
 
-        Genetic = new GeneticAlgorithm(30,100, mutationOperator, crossoverOperator);
+        Genetic = new GeneticAlgorithm(30, poblation, mutationOperator, crossoverOperator);
+
+        TIMER.startTimer("TIMER");
         
         _ready = true;
     }

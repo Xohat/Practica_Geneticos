@@ -384,6 +384,7 @@ MonoBehaviour:
     fitness: 0
   mutationOperator: 0
   crossoverOperator: 0
+  poblation: 100
 --- !u!1 &820417570
 GameObject:
   m_ObjectHideFlags: 0

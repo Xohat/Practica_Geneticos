@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ShotgunConfiguration : MonoBehaviour
 {
+    public float YDegrees;
     public float XDegrees;
 
     public float Strength;
@@ -17,6 +18,8 @@ public class ShotgunConfiguration : MonoBehaviour
     public GeneticAlgorithm Genetic;
     public Individual CurrentIndividual;
 
+    public MutationOperator mutationOperator;
+    public CrossoverOperator crossoverOperator;
 
     private bool _ready;
     // Start is called before the first frame update
@@ -24,14 +27,15 @@ public class ShotgunConfiguration : MonoBehaviour
     {
         Time.timeScale = 50f;
 
-        Genetic = new GeneticAlgorithm(10,10);
+        Genetic = new GeneticAlgorithm(30,100, mutationOperator, crossoverOperator);
         
         _ready = true;
     }
 
-    public void ShooterConfigure(float xDegrees, float strength)
+    public void ShooterConfigure(float xDegrees, float yDegrees, float strength)
     {
         XDegrees = xDegrees;
+        YDegrees = yDegrees;
         Strength = strength;
     }
 
@@ -46,7 +50,7 @@ public class ShotgunConfiguration : MonoBehaviour
     {
         _ready = false;
 
-        transform.eulerAngles = new Vector3(XDegrees, 0,0);
+        transform.eulerAngles = new Vector3(XDegrees, YDegrees,0);
         var shot = Instantiate(ShotSpherePrefab, ShotPosition);
         shot.gameObject.GetComponent<TargetTrigger>().Target = Target;
         shot.gameObject.GetComponent<TargetTrigger>().OnHitCollider += GetResult;
@@ -61,7 +65,7 @@ public class ShotgunConfiguration : MonoBehaviour
         {
             Time.timeScale = 1f;
             CurrentIndividual = Genetic.GetFittest();
-            ShooterConfigure(CurrentIndividual.degree, CurrentIndividual.strength);
+            ShooterConfigure(CurrentIndividual.degreeX, CurrentIndividual.degreeY, CurrentIndividual.strength);
             Shot();
         }
 
@@ -70,7 +74,7 @@ public class ShotgunConfiguration : MonoBehaviour
             CurrentIndividual = Genetic.GetNext();
             if (CurrentIndividual != null)
             {
-                ShooterConfigure(CurrentIndividual.degree,CurrentIndividual.strength);
+                ShooterConfigure(CurrentIndividual.degreeX, CurrentIndividual.degreeY, CurrentIndividual.strength);
                 Shot();
             }
             else

@@ -6,15 +6,17 @@ using UnityEngine;
 [Serializable]
 public class Individual: IComparable<Individual>
 {
-    public float degree;
+    public float degreeX;
+    public float degreeY;
     public float strength;
 
     public float fitness;
 
-    public Individual(float d, float s)
+    public Individual(float dX,float dY, float s)
     {
         fitness = +1000f;
-        degree = d;
+        degreeY = dY;
+        degreeX = dX;
         strength = s;
     }
 

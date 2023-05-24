@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -14,6 +15,8 @@ public class GameLogic : MonoBehaviour
     public AttackResultEvent AttackResult;
     public PlayerEvent ChangeTurnEvent;
 
+    public event Action<float, float, float, float> enemyHitted;
+
     private int _count = 0;
     public IEnumerator Start()
     {
@@ -25,17 +28,20 @@ public class GameLogic : MonoBehaviour
     
     public void ChangeTurn()
     {
+        bool shouldFinish = _count == 1;
+
         var next = _count;
         _count = (_count + 1) % 2;
         GameState.CurrentPlayer = PlayerList.Players[next];
-        ChangeTurnEvent.Raise(PlayerList.Players[next]);
-        
+        if (!shouldFinish)
+            ChangeTurnEvent.Raise(PlayerList.Players[next]);
+
 
     }
 
     private bool EndGameTest()
     {
-        if (PlayerList.Players.Any(p => p.HP <= 0))
+        if (PlayerList.Players.Any(p => p.HP <= 0) && GeneticController1on1.finished)
         {
             GameState.IsFinished = true;
             EndGameEvent.Raise();
@@ -75,7 +81,9 @@ public class GameLogic : MonoBehaviour
             Debug.Log($"With Result \n    {result}");
             AttackResult.Raise(result);
         }
-        
+
+        enemyHitted?.Invoke(att.Target.HP, att.Target.Energy, att.Source.HP, att.Source.Energy);
+
         if (!EndGameTest())
             ChangeTurn();
     }

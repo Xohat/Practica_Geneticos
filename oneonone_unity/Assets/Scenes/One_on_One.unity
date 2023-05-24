@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -277,6 +277,10 @@ MonoBehaviour:
   Body: {fileID: 1369133472}
   GameState: {fileID: 11400000, guid: a841703fbd27b28448b694a9b62f749e, type: 2}
   AttackEvent: {fileID: 11400000, guid: f7754349b4b62e44a887465c45d4dc0c, type: 2}
+  gl: {fileID: 1463507695}
+  Genetic:
+    CurrentGeneration: 0
+    MaxGenerations: 0
 --- !u!114 &147365010
 MonoBehaviour:
   m_ObjectHideFlags: 0
